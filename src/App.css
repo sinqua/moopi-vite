@@ -1,10 +1,21 @@
 @font-face {
-  font-family: "NanumSquareNeo-Hv";
-  src: url("./assets/fonts/NanumSquareNeo-eHv.ttf");
-}
-@font-face {
   font-family: "NanumSquareNeo-Rg";
   src: url("./assets/fonts/NanumSquareNeo-bRg.ttf");
+}
+
+@font-face {
+  font-family: "NanumSquareNeo-Bd";
+  src: url("./assets/fonts/NanumSquareNeo-cBd.ttf");
+}
+
+@font-face {
+  font-family: "NanumSquareNeo-Eb";
+  src: url("./assets/fonts/NanumSquareNeo-dEb.ttf");
+}
+
+@font-face {
+  font-family: "NanumSquareNeo-Hv";
+  src: url("./assets/fonts/NanumSquareNeo-eHv.ttf");
 }
 
 html {

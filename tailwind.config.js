@@ -7,8 +7,10 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        NanumSquareNeoHv: ["NanumSquareNeo-Hv"],
         NanumSquareNeoRg: ["NanumSquareNeo-Rg"],
+        NanumSquareNeoBd: ["NanumSquareNeo-Bd"],
+        NanumSquareNeoEb: ["NanumSquareNeo-Eb"],
+        NanumSquareNeoHv: ["NanumSquareNeo-Hv"],
       },
       colors: {
         's2xyoon-gray': '#DFDFDF'
