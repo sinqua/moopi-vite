@@ -1,10 +1,19 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [
-    "./src/**/*.{js,jsx,ts,tsx}",
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        NanumSquareNeoHv: ["NanumSquareNeo-Hv"],
+        NanumSquareNeoRg: ["NanumSquareNeo-Rg"],
+      },
+      colors: {
+        's2xyoon-gray': '#DFDFDF'
+      }
+    },
   },
   plugins: [],
 }
