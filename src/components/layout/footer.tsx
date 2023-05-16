@@ -2,7 +2,7 @@ import Logo from '../../assets/images/logo.png';
 
 function Footer(props: any) {
     return (
-        <div className="h-60 py-[60px] text-[15px] border-t-[1px] border-s2xyoon-gray">
+        <div className="h-60 py-[60px] text-[15px] bg-white border-t-[1px] border-s2xyoon-gray">
             <div className="flex justify-center space-x-[28px] font-NanumSquareNeoHv mb-[40px] ">
                 <div>Terms of service</div>
                 <div>|</div>

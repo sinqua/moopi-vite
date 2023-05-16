@@ -5,9 +5,7 @@ function Layout(props : any) {
     return (
         <div className="h-full">
             <Header />
-
             {props.children}
-
             <Footer />
         </div>
     )

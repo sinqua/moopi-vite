@@ -21,10 +21,9 @@ const Loadable = (Component: ElementType) => (props: any) =>
 // export const ResetPasswordPage = Loadable(lazy(() => import('../pages/auth/ResetPasswordPage')));
 
 // DASHBOARD: GENERAL
-export const MainPage = Loadable(lazy(() => import('../pages/main')));
+export const UserPage = Loadable(lazy(() => import('../pages/user')));
 
-
-// export const LoginPage = Loadable(lazy(() => import('../pages/auth/LoginPage')));
+export const LoginPage = Loadable(lazy(() => import('../pages/login')));
 
 // export const Dashboard = Loadable(lazy(() => import('../pages/main/Dashboard')));
 // export const UserPage = Loadable(lazy(() => import('../pages/main/UserPage')));

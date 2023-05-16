@@ -3,7 +3,8 @@ import { Navigate, useRoutes } from 'react-router-dom';
 
 // import MainLayout from '../layouts/main/MainLayout';
 
-import MainPage from '../pages/main';
+import UserPage from '../pages/user';
+import LoginPage from '../pages/login';
 
 // import {
 //     LoginPage,
@@ -26,7 +27,16 @@ export default function Router() {
         // Default
         {
             path: '/',
-            element: <Navigate to={"/main"} replace />, index: true,
+            element: <Navigate to={"/login"} replace />, index: true,
+        },
+
+        // Login
+        {
+            path: 'login',
+            children: [
+                { element: <Navigate to={"/login/default"} replace />, index: true },
+                { path: ':api', element: <LoginPage /> },
+            ]
         },
 
         // // Auth
@@ -44,33 +54,34 @@ export default function Router() {
 
         // Main
         {
-            path: 'main',
-            element: (
-                <MainPage/>
-            ),
-            // children: [
-            //     { element: <Navigate to={"/main/dashboard"} replace />, index: true },
-            //     { path: 'dashboard', element: <Dashboard /> },
-            //     { path: 'user', element: <UserPage /> },
-            //     { path: 'farmer', element: <FarmerPage /> },
-            //     { path: 'funding', element: <FundingPage /> },
-            //     {
-            //       path: 'pig',
-            //       children: [
-            //         { element: <Navigate to="/main/pig/list" replace />, index: true },
-            //         { path: 'list', element: <PigListPage /> },
-            //         { path: ':id', element: <PigDetailsPage /> },
-            //       ]
-            //     },
-            //     {
-            //       path: 'farm',
-            //       children: [
-            //         { element: <Navigate to="/main/farm/list" replace />, index: true },
-            //         { path: 'list', element: <FarmListPage /> },
-            //         { path: ':id', element: <FarmDetailsPage /> },
-            //       ]
-            //     },
-            // ]
+            path: 'user',
+            // element: (
+            //     <MainPage/>
+            // ),
+            children: [
+                // { element: <Navigate to={"/main/dashboard"} replace />, index: true },
+                { path: ':id', element: <UserPage /> },
+                // { path: 'dashboard', element: <Dashboard /> },
+                // { path: 'user', element: <UserPage /> },
+                // { path: 'farmer', element: <FarmerPage /> },
+                // { path: 'funding', element: <FundingPage /> },
+                // {
+                //   path: 'pig',
+                //   children: [
+                //     { element: <Navigate to="/main/pig/list" replace />, index: true },
+                //     { path: 'list', element: <PigListPage /> },
+                //     { path: ':id', element: <PigDetailsPage /> },
+                //   ]
+                // },
+                // {
+                //   path: 'farm',
+                //   children: [
+                //     { element: <Navigate to="/main/farm/list" replace />, index: true },
+                //     { path: 'list', element: <FarmListPage /> },
+                //     { path: ':id', element: <FarmDetailsPage /> },
+                //   ]
+                // },
+            ]
         }
     ])
 }

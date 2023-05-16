@@ -6,7 +6,7 @@ import Profile from '../../assets/images/profile.png';
 
 function Header() {
     return (
-        <div className='h-20 relative isolate overflow-hidden flex justify-between px-36 py-6'>
+        <div className='h-20 relative isolate overflow-hidden flex justify-between px-36 py-6 bg-white'>
             <img src={Logo} className='w-auto h-10' />
             <div className='h-fit flex flex-row space-x-5'>
                 <img src={Search} className='inline-flex w-auto h-10' />
