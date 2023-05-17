@@ -25,20 +25,21 @@ export default function LoginPage() {
     }
 
     const discordHandler = () => {
-        window.location.href = `https://discord.com/oauth2/authorize?client_id=${import.meta.env.VITE_DISCORD_CLIENT_ID}&redirect_uri=${import.meta.env.VITE_DISCORD_REDIRECT_URI}&response_type=code&scope=identify`;
+        window.location.href = `https://discord.com/oauth2/authorize?client_id=${import.meta.env.VITE_DISCORD_CLIENT_ID}&redirect_uri=${import.meta.env.VITE_DISCORD_REDIRECT_URI}&response_type=code&scope=email`;
 
     }
 
     let LOGIN_CODE = new URL(window.location.href).searchParams.get('code');
 
 
-    const requestUser = async () => {
+    const requestUser = async (platform: any) => {
         const res = await fetch(import.meta.env.VITE_SERVER_URL + "/oauth", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
+                "platform": platform,
                 "code": LOGIN_CODE,
             }),
         });
@@ -57,11 +58,13 @@ export default function LoginPage() {
 
             if(window.location.href.includes("kakao")) {
                 console.log("카카오 로그인 완료");
+                requestUser("kakao");
 
             } else if(window.location.href.includes("discord")) {
                 console.log("디스코드 로그인 완료");
+                requestUser("discord");
+
             }
-            // requestUser();
         }
 
         
@@ -90,7 +93,7 @@ export default function LoginPage() {
                         <img className="w-[40px] h-[40px] m-[10px] absolute left-0" src={discordLogo}/>
                         <p>Start with Discord</p>
                     </div>
-                    <div className="w-[390px] h-[60px] rounded-[5px] relative flex flex-row justify-center items-center bg-[#FEE500] cursor-pointer">
+                    <div className="w-[390px] h-[60px] rounded-[5px] relative flex flex-row justify-center items-center bg-[#FEE500] cursor-pointer" onClick={kakaoHandler}>
                         <img className="w-[40px] h-[40px] m-[10px] absolute left-0" src={kakaoLogo}/>
                         <p className="text-black">Start with Kakao</p>
                     </div>
@@ -101,8 +104,8 @@ export default function LoginPage() {
                 </div>
                 <div className="h-[114px]" />
                 <div className="w-[360px] font-NanumSquareNeoRg text-[18px] text-center">
-                    계속 진행하면 moopi <span className="font-NanumSquareNeoHv underline decoration-2 underline-offset-4">서비스 약관</span>에 동의하고
-                    <span className="font-NanumSquareNeoHv underline decoration-2 underline-offset-4">개인정보 보호정책</span>을 읽었음을 인정하는 것으로
+                    계속 진행하면 moopi <span className="font-NanumSquareNeoHv underline decoration-2 underline-offset-4 cursor-pointer">서비스 약관</span>에 동의하고
+                    <span className="font-NanumSquareNeoHv underline decoration-2 underline-offset-4 cursor-pointer">개인정보 보호정책</span>을 읽었음을 인정하는 것으로
                     간주됩니다.
                 </div>
                 <div className="h-[83px]" />
