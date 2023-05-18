@@ -22,9 +22,9 @@ export default function UserPage() {
     return (
         <Layout>
             <div className="flex flex-col items-center">
-                <div className="flex flex-row justify-center w-full max-w-[1920px] py-[60px] px-[144px] space-x-[24px]">
-                    <div className="basis-3/5 h-[617px] rounded-[10px] bg-[url('./assets/images/mainModel.png')] bg-no-repeat bg-cover shadow-[0px_3px_10px_rgba(0,0,0,0.16)]"></div>
-                    <div className="basis-2/5 h-[617px] p-[40px] rounded-[10px] shadow-[0px_3px_10px_rgba(0,0,0,0.16)]">
+                <div className="flex md:flex-row flex-col justify-center w-full max-w-[1920px] py-[60px] md:px-[144px] md:space-x-[24px] md:space-y-0 sm:space-y-[60px]">
+                    <div className="md:basis-3/5 h-[605px] rounded-[10px] bg-[url('./assets/images/mainModel.png')] bg-center bg-no-repeat bg-cover shadow-[0px_3px_10px_rgba(0,0,0,0.16)]"></div>
+                    <div className="md:basis-2/5 h-[605px] p-[40px] rounded-[10px] shadow-[0px_3px_10px_rgba(0,0,0,0.16)]">
                         <div className="flex flex-row space-x-[30px] mb-[40px] relative">
                             <div className="h-[120px] w-[120px] bg-gray-200 rounded-full"></div>
                             <div className="flex flex-col justify-center space-y-[30px]">
