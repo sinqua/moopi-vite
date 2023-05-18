@@ -46,16 +46,16 @@ export default function LoginPage() {
         const data = await res.json();
 
         console.log(data);
+
         // setCookie('user', data.USER_ID, {path: '/'})
 
-        // if(res.status === 200)
-        //     navigate(`/user/${data.USER_ID}`);
+        if(res.status === 200)
+            navigate(`/user/${data.userId}`);
     }
 
     useEffect(() => {
         if(LOGIN_CODE) {
-            console.log(LOGIN_CODE);
-
+            
             if(window.location.href.includes("kakao")) {
                 console.log("카카오 로그인 완료");
                 requestUser("kakao");
@@ -66,8 +66,6 @@ export default function LoginPage() {
 
             }
         }
-
-        
     }, []);
 
     return (
