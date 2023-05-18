@@ -26,7 +26,10 @@ export default function LoginPage() {
 
     const discordHandler = () => {
         window.location.href = `https://discord.com/oauth2/authorize?client_id=${import.meta.env.VITE_DISCORD_CLIENT_ID}&redirect_uri=${import.meta.env.VITE_DISCORD_REDIRECT_URI}&response_type=code&scope=email`;
+    }
 
+    const twitterHandler = () => {
+        window.location.href = `https://twitter.com/i/oauth2/authorize?response_type=code&client_id=${import.meta.env.VITE_TWITTER_CLIENT_ID}&redirect_uri=${import.meta.env.VITE_TWITTER_REDIRECT_URI}&scope=tweet.read%20users.read%20offline.access&state=state&code_challenge=challenge&code_challenge_method=plain`;
     }
 
     let LOGIN_CODE = new URL(window.location.href).searchParams.get('code');
@@ -63,7 +66,10 @@ export default function LoginPage() {
             } else if(window.location.href.includes("discord")) {
                 console.log("디스코드 로그인 완료");
                 requestUser("discord");
-
+                
+            } else if(window.location.href.includes("twitter")) {
+                console.log("트위터 로그인 완료");
+                requestUser("twitter");
             }
         }
 
@@ -85,7 +91,7 @@ export default function LoginPage() {
                         <img className="w-[40px] h-[40px] m-[10px] absolute left-0" src={googleLogo}/>
                         <p className="text-black">Start with Google</p>
                     </div>
-                    <div className="w-[390px] h-[60px] rounded-[5px] relative flex flex-row justify-center items-center bg-[#00ACEE] cursor-pointer">
+                    <div className="w-[390px] h-[60px] rounded-[5px] relative flex flex-row justify-center items-center bg-[#00ACEE] cursor-pointer" onClick={twitterHandler}>
                         <img className="w-[40px] h-[40px] m-[10px] absolute left-0" src={twitterLogo}/>
                         <p>Start with Twitter</p>
                     </div>
