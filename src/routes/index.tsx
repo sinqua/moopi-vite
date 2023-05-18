@@ -27,7 +27,7 @@ export default function Router() {
         // Default
         {
             path: '/',
-            element: <Navigate to={"/login"} replace />, index: true,
+            element: <Navigate to={"/user/1"} replace />, index: true,
         },
 
         // Login
