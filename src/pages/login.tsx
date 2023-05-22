@@ -1,10 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { useCookies } from "react-cookie";
+import { useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 
-import LoginInsta from "../assets/images/loginInsta.png";
-import LoginKakao from "../assets/images/loginKakao.png";
-import LoginGoogle from "../assets/images/loginGoogle.png";
 
 import moopiLogo from "../assets/images/moopiLogo.png";
 import googleLogo from "../assets/images/googleLogo.png";
@@ -17,8 +13,6 @@ import offingLogo from "../assets/images/offingLogo.png";
 
 export default function LoginPage() {
     const navigate = useNavigate();
-
-    const [cookies, setCookie, removeCookie] = useCookies(['user']);
 
     const kakaoHandler = () => {
         window.location.href = `https://kauth.kakao.com/oauth/authorize?client_id=${import.meta.env.VITE_REST_API_KEY}&redirect_uri=${import.meta.env.VITE_KAKAO_REDIRECT_URI}&response_type=code`;

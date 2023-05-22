@@ -1,5 +1,4 @@
 // import { m } from 'framer-motion';
-import { useLocation } from 'react-router-dom';
 // // @mui
 // import { alpha, styled } from '@mui/material/styles';
 // import { Box, LinearProgress } from '@mui/material';
@@ -32,7 +31,6 @@ import { useLocation } from 'react-router-dom';
 // ----------------------------------------------------------------------
 
 export default function LoadingScreen() {
-  const { pathname } = useLocation();
 
   // const isDesktop = useResponsive('up', 'lg');
 
