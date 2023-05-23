@@ -5,6 +5,7 @@ import { Navigate, useRoutes } from 'react-router-dom';
 
 import UserPage from '../pages/user';
 import LoginPage from '../pages/login';
+import ThreeJsPage from '../pages/threejs';
 
 // import {
 //     LoginPage,
@@ -37,6 +38,11 @@ export default function Router() {
                 { element: <Navigate to={"/login/default"} replace />, index: true },
                 { path: ':api', element: <LoginPage /> },
             ]
+        },
+
+        {
+            path: 'threejs',
+            element: <ThreeJsPage />,
         },
 
         // // Auth

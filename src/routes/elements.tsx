@@ -25,6 +25,8 @@ export const UserPage = Loadable(lazy(() => import('../pages/user')));
 
 export const LoginPage = Loadable(lazy(() => import('../pages/login')));
 
+export const ThreeJsPage = Loadable(lazy(() => import('../pages/threejs')));
+
 // export const Dashboard = Loadable(lazy(() => import('../pages/main/Dashboard')));
 // export const UserPage = Loadable(lazy(() => import('../pages/main/UserPage')));
 // export const FarmerPage = Loadable(lazy(() => import('../pages/main/FarmerPage')));
