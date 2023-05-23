@@ -6,6 +6,7 @@ import Layout from "../components/layout/layout";
 import Heart from "../assets/images/heart.png";
 import HoverHeart from "../assets/images/hoverHeart.png";
 import ActiveHeart from "../assets/images/activeHeart.png";
+import MainCanvas from "../components/threejs/mainCanvas";
 
 export default function UserPage() {
     const [page, setPage] = useState("설명");
@@ -16,11 +17,35 @@ export default function UserPage() {
     const normalBtn = "flex justify-center items-center sm:basis-1/4 sm:h-[66px] h-[45px] sm:px-0 px-[14px] hover:bg-s2xyoon-gray cursor-pointer";
     const selectedBtn = "flex justify-center items-center sm:basis-1/4 sm:h-[66px] h-[45px] sm:px-0 px-[14px] text-white bg-[#333333] cursor-pointer";
 
+
+
+    const [fullscreen, setFullscreen] = useState(false);
+    const fullscreenClass = "absolute w-full h-full top-0 left-0";
+    const defaultClass = "relative w-full h-full top-0 left-0";
+
+
+    const handleContextMenu = (event: any) => {
+        event.preventDefault(); // Prevent the default right-click behavior
+    };
+
+    window.addEventListener('message', handleMessage, false); // 메시지 수신 이벤트 등록
+
+    function handleMessage(msg: any) { // 메시지 수신 처리를 위한 함수
+        if(msg.data === "fullScreen") {
+            setFullscreen(!fullscreen);
+        }
+    }
+
     return (
         <Layout>
-            <div className="flex flex-col items-center">
+            <div className="flex flex-col items-center" onContextMenu={handleContextMenu}>
                 <div className="flex md:flex-row flex-col justify-center w-full max-w-[1920px] sm:pt-[50px] pt-[30px] md:pb-[60px] md:space-x-[16px] md:space-y-0 sm:space-y-[40px] space-y-[30px]">
-                    <div className="md:w-[814px] md:h-[526px] h-[640px] rounded-[10px] bg-[url('./assets/images/mainModel.png')] bg-center bg-no-repeat bg-cover shadow-[0px_3px_10px_rgba(0,0,0,0.16)]"></div>
+                    {/* <div className="md:w-[814px] md:h-[526px] h-[640px] rounded-[10px] bg-[url('./assets/images/mainModel.png')] bg-center bg-no-repeat bg-cover shadow-[0px_3px_10px_rgba(0,0,0,0.16)]"> */}
+                    <div className="md:w-[814px] md:h-[526px] h-[640px] rounded-[10px] bg-[#FAF9F6] shadow-[0px_3px_10px_rgba(0,0,0,0.16)] z-[1]">
+                        {/* <MainCanvas /> */}
+
+                        <iframe src="http://localhost:5173/threejs" className={fullscreen ? fullscreenClass : defaultClass} />
+                    </div>
                     <div className="relative md:w-[482px] sm:h-[526px] h-[602px] sm:p-[30px] p-[20px] flex flex-col rounded-[10px] shadow-[0px_3px_10px_rgba(0,0,0,0.16)]">
                         <div className="flex flex-row md:space-x-[20px] sm:space-x-[30px] space-x-[20px] mb-[30px] relative">
                             <div className="h-[97px] w-[97px] bg-gray-200 rounded-full"></div>
