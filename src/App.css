@@ -18,6 +18,11 @@
   src: url("./assets/fonts/NanumSquareNeo-eHv.ttf");
 }
 
+@font-face {
+  font-family: "Segoe-UI";
+  src: url("./assets/fonts/Segoe\ UI.ttf");
+}
+
 html {
   height: 100%;
 }
