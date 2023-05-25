@@ -30,6 +30,7 @@ export default {
         NanumSquareNeoBd: ["NanumSquareNeo-Bd"],
         NanumSquareNeoEb: ["NanumSquareNeo-Eb"],
         NanumSquareNeoHv: ["NanumSquareNeo-Hv"],
+        SegoeUI: ["Segoe-UI"],
       },
       colors: {
         's2xyoon-gray': '#DFDFDF'

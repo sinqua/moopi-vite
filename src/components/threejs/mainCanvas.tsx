@@ -167,7 +167,7 @@ export default function MainCanvas() {
                         position={[0, 0, 0]}
                         children-0-castShadow
                     /> */}
-                    
+
                     {/* <Model path={"../src/assets/models/zxcv.fbx"} /> */}
                     <Model path={"../src/assets/models/asdf.gltf"} />
                     {/* <Model path={"../src/assets/models/s2xyoon.vrm"} /> */}
@@ -180,11 +180,11 @@ export default function MainCanvas() {
                 {/* <OrbitControls target={[0, 1, 0]} /> */}
             </Canvas>
             <div className="absolute flex flex-row bottom-0 right-0 space-x-[20px] p-[20px]">
-                <img className="w-[40px] h-[40px] cursor-pointer" src={ResetBtn} onClick={resetCamera}/>
-                <img className="w-[40px] h-[40px] cursor-pointer" src={HelpBtn}/>
-                <img className="w-[40px] h-[40px] cursor-pointer" src={VRBtn}/>
+                <img className="w-[25px] h-[25px] cursor-pointer" src={ResetBtn} onClick={resetCamera}/>
+                <img className="w-[25px] h-[25px] cursor-pointer" src={HelpBtn}/>
+                <img className="w-[25px] h-[25px] cursor-pointer" src={VRBtn}/>
                 {/* <img className="w-[40px] h-[40px] cursor-pointer" src={FullScreenBtn} onClick={() => setFullscreen(!fullscreen)}/> */}
-                <img className="w-[40px] h-[40px] cursor-pointer" src={FullScreenBtn} onClick={postMessage}/>
+                <img className="w-[25px] h-[25px] cursor-pointer" src={FullScreenBtn} onClick={postMessage}/>
             </div>
         </div>
     );

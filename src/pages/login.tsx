@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 
 
-import moopiLogo from "../assets/images/moopiLogo.png";
+import moopiLogo from "../assets/images/logo.png";
 import googleLogo from "../assets/images/googleLogo.png";
 import twitterLogo from "../assets/images/twitterLogo.png";
 import discordLogo from "../assets/images/discordLogo.png";
@@ -69,45 +69,43 @@ export default function LoginPage() {
     }, []);
 
     return (
-        <div className="flex flex-row h-full">
-            <div className="grow bg-[url('./assets/images/loginBackground.png')] bg-no-repeat bg-cover"></div>
-            <div className=" w-[670px] py-[50px] flex flex-col items-center justify-center">
-                <img className="w-[40px] h-[40px]" src={moopiLogo} />
-                <div className="h-[40px]" />
-                <p className="font-NanumSquareNeoEb text-[25px]">moopi에 오신 것을 환영합니다</p>
-                <div className="h-[30px]" />
-                <p className="font-NanumSquareNeoHv text-[35px]">Log In</p>
+        <div className="flex flex-row h-[1080px]">
+            <div className="md:grow bg-[url('./assets/images/loginBackground.png')] bg-no-repeat bg-cover"></div>
+            <div className="md:grow-0 grow w-[470px] py-[100px] flex flex-col items-center">
+                <img className="w-[106px] h-[30px]" src={moopiLogo} />
+                <div className="h-[95px]" />
+                <p className="font-SegoeUI font-semibold text-xl">moopi에 오신 것을 환영합니다</p>
                 <div className="h-[80px]" />
-                <div className="space-y-[24px] font-NanumSquareNeoBd text-[15px] text-white">
-                    <div className="w-[390px] h-[60px] rounded-[5px] relative flex flex-row justify-center items-center bg-white border-[1px] border-s2xyoon-gray cursor-pointer">
-                        <img className="w-[40px] h-[40px] m-[10px] absolute left-0" src={googleLogo}/>
-                        <p className="text-black">Start with Google</p>
-                    </div>
-                    <div className="w-[390px] h-[60px] rounded-[5px] relative flex flex-row justify-center items-center bg-[#00ACEE] cursor-pointer" onClick={twitterHandler}>
-                        <img className="w-[40px] h-[40px] m-[10px] absolute left-0" src={twitterLogo}/>
-                        <p>Start with Twitter</p>
-                    </div>
-                    <div className="w-[390px] h-[60px] rounded-[5px] relative flex flex-row justify-center items-center bg-[#5865F2] cursor-pointer" onClick={discordHandler}>
-                        <img className="w-[40px] h-[40px] m-[10px] absolute left-0" src={discordLogo}/>
-                        <p>Start with Discord</p>
-                    </div>
-                    <div className="w-[390px] h-[60px] rounded-[5px] relative flex flex-row justify-center items-center bg-[#FEE500] cursor-pointer" onClick={kakaoHandler}>
+                <div className="space-y-[24px] font-SegoeUI text-sm text-white">
+                    <div className="w-[320px] h-[40px] rounded-[5px] relative flex flex-row justify-center items-center bg-[#FEE500] cursor-pointer" onClick={kakaoHandler}>
                         <img className="w-[40px] h-[40px] m-[10px] absolute left-0" src={kakaoLogo}/>
                         <p className="text-black">Start with Kakao</p>
                     </div>
-                    <div className="w-[390px] h-[60px] rounded-[5px] relative flex flex-row justify-center items-center bg-[#03C75A] cursor-pointer">
+                    <div className="w-[320px] h-[40px] rounded-[5px] relative flex flex-row justify-center items-center bg-[#00ACEE] cursor-pointer" onClick={twitterHandler}>
+                        <img className="w-[40px] h-[40px] m-[10px] absolute left-0" src={twitterLogo}/>
+                        <p>Start with Twitter</p>
+                    </div>
+                    <div className="w-[320px] h-[40px] rounded-[5px] relative flex flex-row justify-center items-center bg-white border-[1px] border-s2xyoon-gray cursor-pointer">
+                        <img className="w-[40px] h-[40px] m-[10px] absolute left-0" src={googleLogo}/>
+                        <p className="text-black">Start with Google</p>
+                    </div>
+                    <div className="w-[320px] h-[40px] rounded-[5px] relative flex flex-row justify-center items-center bg-[#5865F2] cursor-pointer" onClick={discordHandler}>
+                        <img className="w-[40px] h-[40px] m-[10px] absolute left-0" src={discordLogo}/>
+                        <p>Start with Discord</p>
+                    </div>
+                    <div className="w-[320px] h-[40px] rounded-[5px] relative flex flex-row justify-center items-center bg-[#03C75A] cursor-pointer">
                         <img className="w-[40px] h-[40px] m-[10px] absolute left-0" src={naverLogo}/>
                         <p>Start with Naver</p>
                     </div>
                 </div>
-                <div className="h-[114px]" />
-                <div className="w-[360px] font-NanumSquareNeoRg text-[18px] text-center">
-                    계속 진행하면 moopi <span className="font-NanumSquareNeoHv underline decoration-2 underline-offset-4 cursor-pointer">서비스 약관</span>에 동의하고
-                    <span className="font-NanumSquareNeoHv underline decoration-2 underline-offset-4 cursor-pointer">개인정보 보호정책</span>을 읽었음을 인정하는 것으로
+                <div className="h-[57px]" />
+                <div className="w-[300px] font-SegoeUI text-sm text-center">
+                    계속 진행하면 moopi <span className="underline underline-offset-2 cursor-pointer">서비스 약관</span>에 동의하고
+                    <span className="underline underline-offset-2 cursor-pointer">개인정보 보호정책</span>을 읽었음을 인정하는 것으로
                     간주됩니다.
                 </div>
-                <div className="h-[83px]" />
-                <div className="flex flex-row space-x-[8px] font-NanumSquareNeoRg text-[18px]">
+                <div className="h-[279px]" />
+                <div className="flex flex-row items-center space-x-[8px] font-SegoeUI text-sm">
                     <p>by offing</p>
                     <img className="w-[31px] h-[31px]" src={offingLogo}/>
                     <p>company</p>
