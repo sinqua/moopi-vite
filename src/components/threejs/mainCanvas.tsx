@@ -28,12 +28,6 @@ const Model = (props: any) => {
         props.path
     );
 
-
-
-    // const model = useGLTF( props.path );
-
-    // const model = useFBX('https://moopi-model-bucket.s3.ap-northeast-2.amazonaws.com/model/Girl.fbx')
-
     const animation = useLoader(
         FBXLoader,
         '../src/assets/models/Walking.fbx'
@@ -76,13 +70,13 @@ const Model = (props: any) => {
     //     });
     // }
 
-    let mixer = new AnimationMixer(model);
+    // let mixer = new AnimationMixer(model);
 
-    const action = mixer.clipAction(animation.animations[0])
+    // const action = mixer.clipAction(animation.animations[0])
 
-    console.log(action);
+    // console.log(action);
 
-    action.play();
+    // action.play();
 
 
     // // model.animations.forEach((clip: any) => {
