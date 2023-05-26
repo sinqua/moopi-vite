@@ -69,14 +69,14 @@ export default function LoginPage() {
     }, []);
 
     return (
-        <div className="flex flex-row h-[1080px]">
+        <div className="flex flex-row sm:h-full h-[812px] font-sans">
             <div className="md:grow bg-[url('./assets/images/loginBackground.png')] bg-no-repeat bg-cover"></div>
-            <div className="md:grow-0 grow w-[470px] py-[100px] flex flex-col items-center">
+            <div className="md:grow-0 grow w-[470px] sm:py-[100px] pt-[60px] pb-[50px] flex flex-col items-center">
                 <img className="w-[106px] h-[30px]" src={moopiLogo} />
-                <div className="h-[95px]" />
-                <p className="font-SegoeUI font-semibold text-xl">moopi에 오신 것을 환영합니다</p>
-                <div className="h-[80px]" />
-                <div className="space-y-[24px] font-SegoeUI text-sm text-white">
+                <div className="sm:h-[95px] h-[40px]" />
+                <p className="font-semibold text-xl">moopi에 오신 것을 환영합니다</p>
+                <div className="sm:h-[60px] h-[80px]" />
+                <div className="space-y-[18px] text-sm text-white">
                     <div className="w-[320px] h-[40px] rounded-[5px] relative flex flex-row justify-center items-center bg-[#FEE500] cursor-pointer" onClick={kakaoHandler}>
                         <img className="w-[40px] h-[40px] m-[10px] absolute left-0" src={kakaoLogo}/>
                         <p className="text-black">Start with Kakao</p>
@@ -98,14 +98,14 @@ export default function LoginPage() {
                         <p>Start with Naver</p>
                     </div>
                 </div>
-                <div className="h-[57px]" />
-                <div className="w-[300px] font-SegoeUI text-sm text-center">
+                <div className="sm:h-[57px] h-[60px]" />
+                <div className="w-[300px] text-sm text-center leading-[30px]">
                     계속 진행하면 moopi <span className="underline underline-offset-2 cursor-pointer">서비스 약관</span>에 동의하고
                     <span className="underline underline-offset-2 cursor-pointer">개인정보 보호정책</span>을 읽었음을 인정하는 것으로
                     간주됩니다.
                 </div>
-                <div className="h-[279px]" />
-                <div className="flex flex-row items-center space-x-[8px] font-SegoeUI text-sm">
+                <div className="sm:h-[279px] h-[83px]" />
+                <div className="flex flex-row items-center space-x-[8px] text-sm">
                     <p>by offing</p>
                     <img className="w-[31px] h-[31px]" src={offingLogo}/>
                     <p>company</p>
