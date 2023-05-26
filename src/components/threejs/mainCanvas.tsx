@@ -1,12 +1,12 @@
 import { useEffect, useRef, useState } from "react";
+import axios from "axios";
 
 import { Canvas, PerspectiveCameraProps, extend, useFrame, useLoader, useThree } from '@react-three/fiber'
-import { Stats, OrbitControls, Circle, CameraControls, OrbitControlsProps } from '@react-three/drei'
+import { Stats, OrbitControls, Circle, CameraControls, OrbitControlsProps, useGLTF, useFBX } from '@react-three/drei'
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { FBXLoader } from "three/examples/jsm/loaders/FBXLoader.js";
 import { Color } from "three/src/math/Color.js";
 
-import { AxesHelper, PerspectiveCamera } from 'three';
 
 import {AnimationMixer, Vector3, Box3, BoxGeometry} from 'three';
 
@@ -14,6 +14,7 @@ import ResetBtn from '../../assets/images/resetBtn.png';
 import HelpBtn from '../../assets/images/helpBtn.png';
 import VRBtn from '../../assets/images/vrBtn.png';
 import FullScreenBtn from '../../assets/images/fullscreenBtn.png';
+
 
 
 const Model = (props: any) => {
@@ -25,9 +26,14 @@ const Model = (props: any) => {
     const model = useLoader(
         fileType === "fbx" ?  FBXLoader : GLTFLoader,
         props.path
-    )
+    );
 
-    console.log(model);
+
+
+    // const model = useGLTF( props.path );
+
+    // const model = useFBX('https://moopi-model-bucket.s3.ap-northeast-2.amazonaws.com/model/Girl.fbx')
+
 
     const Box = new Box3().setFromObject( fileType === "fbx" ? model : model.scene ); 
     const Size = Box.getSize(new Vector3());
@@ -81,7 +87,6 @@ const Model = (props: any) => {
     // model.scene.rotation.y = 90;
 
 
-    // console.log(model);
     return (
         <>
             <primitive 
@@ -98,14 +103,24 @@ const Model = (props: any) => {
 
 export default function MainCanvas() {
     const [fullscreen, setFullscreen] = useState(false);
+    const [ modelUrl, setModelUrl ] = useState("");
 
     const fullscreenClass = "absolute w-full h-full top-0 left-0";
     const defaultClass = "relative w-full h-full top-0 left-0";
 
-    // const gltf = useLoader(GLTFLoader, '../src/assets/models/s2xyoon.vrm')
-    // const gltf = useLoader(GLTFLoader, '../src/assets/models/asdf.gltf')
-
-    // console.log(gltf);
+    const PresignedUrl = async (bucket: string, key: string) => {
+        let result = "";
+        
+        await axios.post(`https://moopi.offing.me/api/model`,{
+            bucket: bucket,
+            key: key
+        })
+        .then((res) => {
+            result =  res.data;
+        })
+    
+        setModelUrl(result);
+    }
 
     const gradientShader = {
         uniforms: {
@@ -135,17 +150,17 @@ export default function MainCanvas() {
     const cameraControlsRef = useRef<CameraControls>(null);
 
 
-
     const resetCamera = () => {
         cameraControlsRef.current?.reset(true);
-        // controlsRef.current?.reset();
     };
 
     const postMessage = () => {
-        window.parent.postMessage('fullScreen', '*'); // 메시지 전송
+        window.parent.postMessage('fullScreen', '*');
     }
 
-
+    useEffect(() => {
+        PresignedUrl("moopi-model-bucket", "model/choyang2_DevilHood.vrm");
+    }, []);
 
     return (
         <div className={fullscreen ? fullscreenClass : defaultClass}>
@@ -167,10 +182,10 @@ export default function MainCanvas() {
                         position={[0, 0, 0]}
                         children-0-castShadow
                     /> */}
-
+                    
                     {/* <Model path={"../src/assets/models/zxcv.fbx"} /> */}
-                    <Model path={"../src/assets/models/asdf.gltf"} />
-                    {/* <Model path={"../src/assets/models/s2xyoon.vrm"} /> */}
+                    {/* <Model path={'https://moopi-model-bucket.s3.ap-northeast-2.amazonaws.com/model/Girl.fbx'} /> */}
+                    <Model path={modelUrl} />
                     <Circle args={[0.5]} rotation-x={-Math.PI / 2} receiveShadow renderOrder={2}>
                         {/* <meshStandardMaterial color={new Color('#eeeeee')} /> */}
                         <shaderMaterial attach="material" args={[gradientShader]} />
@@ -180,11 +195,11 @@ export default function MainCanvas() {
                 {/* <OrbitControls target={[0, 1, 0]} /> */}
             </Canvas>
             <div className="absolute flex flex-row bottom-0 right-0 space-x-[20px] p-[20px]">
-                <img className="w-[25px] h-[25px] cursor-pointer" src={ResetBtn} onClick={resetCamera}/>
-                <img className="w-[25px] h-[25px] cursor-pointer" src={HelpBtn}/>
-                <img className="w-[25px] h-[25px] cursor-pointer" src={VRBtn}/>
+                <img className="w-[40px] h-[40px] cursor-pointer" src={ResetBtn} onClick={resetCamera}/>
+                <img className="w-[40px] h-[40px] cursor-pointer" src={HelpBtn}/>
+                <img className="w-[40px] h-[40px] cursor-pointer" src={VRBtn}/>
                 {/* <img className="w-[40px] h-[40px] cursor-pointer" src={FullScreenBtn} onClick={() => setFullscreen(!fullscreen)}/> */}
-                <img className="w-[25px] h-[25px] cursor-pointer" src={FullScreenBtn} onClick={postMessage}/>
+                <img className="w-[40px] h-[40px] cursor-pointer" src={FullScreenBtn} onClick={postMessage}/>
             </div>
         </div>
     );
