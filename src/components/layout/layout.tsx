@@ -3,7 +3,7 @@ import Header from "./header";
 
 function Layout(props : any) {
     return (
-        <div className="h-full">
+        <div className="flex flex-col items-center h-auto min-h-full">
             <Header />
             {props.children}
             <Footer />

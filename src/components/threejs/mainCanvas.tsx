@@ -27,7 +27,13 @@ const Model = (props: any) => {
         props.path
     )
 
+    const animation = useLoader(
+        FBXLoader,
+        '../src/assets/models/Walking.fbx'
+    )
+
     console.log(model);
+    console.log("animation", animation);
 
     const Box = new Box3().setFromObject( fileType === "fbx" ? model : model.scene ); 
     const Size = Box.getSize(new Vector3());
@@ -62,6 +68,22 @@ const Model = (props: any) => {
     //         action.play();
     //     });
     // }
+
+    let mixer = new AnimationMixer(model);
+
+    const action = mixer.clipAction(animation.animations[0])
+
+    console.log(action);
+
+    action.play();
+
+
+    // // model.animations.forEach((clip: any) => {
+
+    // //     // console.log("clip", clip);
+    // //     const action = mixer.clipAction(clip)
+    // //     action.play();
+    // // });
 
     // useFrame((state, delta) => {
 
@@ -102,11 +124,6 @@ export default function MainCanvas() {
     const fullscreenClass = "absolute w-full h-full top-0 left-0";
     const defaultClass = "relative w-full h-full top-0 left-0";
 
-    // const gltf = useLoader(GLTFLoader, '../src/assets/models/s2xyoon.vrm')
-    // const gltf = useLoader(GLTFLoader, '../src/assets/models/asdf.gltf')
-
-    // console.log(gltf);
-
     const gradientShader = {
         uniforms: {
           color1: { value: new Color('#B2B2B2') }, // Start color
@@ -142,13 +159,20 @@ export default function MainCanvas() {
     };
 
     const postMessage = () => {
-        window.parent.postMessage('fullScreen', '*'); // 메시지 전송
+        // window.parent.postMessage('fullScreen', '*'); // 메시지 전송
+        if (!document.fullscreenElement) {
+            document.documentElement.requestFullscreen()
+        } else {
+            if (document.exitFullscreen) {
+                document.exitFullscreen()
+            }
+        }
     }
 
 
 
     return (
-        <div className={fullscreen ? fullscreenClass : defaultClass}>
+        <div id="temptemp" className={fullscreen ? fullscreenClass : defaultClass}>
             <Canvas camera={{ position: [0.5, 1, 2]}} style={{backgroundColor: '#FAF9F6'}} shadows  >
                 <group position-y={-0.8}>
                     <CameraControls
@@ -162,15 +186,10 @@ export default function MainCanvas() {
                     />
 
                     <directionalLight position={[3.3, 1.0, 4.4]} castShadow />
-                    {/* <primitive
-                        object={gltf.scene}
-                        position={[0, 0, 0]}
-                        children-0-castShadow
-                    /> */}
 
                     {/* <Model path={"../src/assets/models/zxcv.fbx"} /> */}
-                    <Model path={"../src/assets/models/asdf.gltf"} />
-                    {/* <Model path={"../src/assets/models/s2xyoon.vrm"} /> */}
+                    {/* <Model path={"../src/assets/models/asdf.gltf"} /> */}
+                    <Model path={"../src/assets/models/s2xyoon.vrm"} />
                     <Circle args={[0.5]} rotation-x={-Math.PI / 2} receiveShadow renderOrder={2}>
                         {/* <meshStandardMaterial color={new Color('#eeeeee')} /> */}
                         <shaderMaterial attach="material" args={[gradientShader]} />
@@ -180,11 +199,10 @@ export default function MainCanvas() {
                 {/* <OrbitControls target={[0, 1, 0]} /> */}
             </Canvas>
             <div className="absolute flex flex-row bottom-0 right-0 space-x-[20px] p-[20px]">
-                <img className="w-[25px] h-[25px] cursor-pointer" src={ResetBtn} onClick={resetCamera}/>
-                <img className="w-[25px] h-[25px] cursor-pointer" src={HelpBtn}/>
-                <img className="w-[25px] h-[25px] cursor-pointer" src={VRBtn}/>
-                {/* <img className="w-[40px] h-[40px] cursor-pointer" src={FullScreenBtn} onClick={() => setFullscreen(!fullscreen)}/> */}
-                <img className="w-[25px] h-[25px] cursor-pointer" src={FullScreenBtn} onClick={postMessage}/>
+                <img className="sm:w-[25px] sm:h-[25px] w-[20px] h-[20px] cursor-pointer" src={ResetBtn} onClick={resetCamera}/>
+                <img className="sm:w-[25px] sm:h-[25px] w-[20px] h-[20px] cursor-pointer" src={HelpBtn}/>
+                <img className="sm:w-[25px] sm:h-[25px] w-[20px] h-[20px] cursor-pointer" src={VRBtn}/>
+                <img className="sm:w-[25px] sm:h-[25px] w-[20px] h-[20px] cursor-pointer" src={FullScreenBtn} onClick={postMessage}/>
             </div>
         </div>
     );
