@@ -1,4 +1,4 @@
-import Logo from '../../assets/images/logo.png';
+import Logo from '../../assets/moopi.svg';
 import SearchBtn from '../../assets/images/searchBtn.png';
 import Alarm from '../../assets/images/alarm.png';
 import Message from '../../assets/images/message.png';

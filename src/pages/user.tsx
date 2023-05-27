@@ -1,11 +1,12 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import Layout from "../components/layout/layout";
 
 import Heart from "../assets/images/heart.png";
 import HoverHeart from "../assets/images/hoverHeart.png";
 import ActiveHeart from "../assets/images/activeHeart.png";
-import MainCanvas from "../components/threejs/mainCanvas";
+
+const IframeUrl = "https://moopi.offing.me/threejs"
 
 export default function UserPage() {
     const [page, setPage] = useState("설명");
@@ -18,23 +19,10 @@ export default function UserPage() {
     const normalBtn = "flex justify-center items-center sm:basis-1/4 sm:h-[66px] h-[45px] grow hover:bg-s2xyoon-gray cursor-pointer";
     const selectedBtn = "flex justify-center items-center sm:basis-1/4 sm:h-[66px] h-[45px] grow text-white bg-[#333333] cursor-pointer";
 
-    const [fullscreen, setFullscreen] = useState(false);
-    const fullscreenClass = "absolute w-full h-full top-0 left-0";
-    const defaultClass = "relative w-full h-full top-0 left-0";
-
 
     const handleContextMenu = (event: any) => {
         event.preventDefault(); // Prevent the default right-click behavior
     };
-
-    // window.addEventListener('message', handleMessage, false); // 메시지 수신 이벤트 등록
-
-    // function handleMessage(msg: any) { // 메시지 수신 처리를 위한 함수
-    //     if(msg.data === "fullScreen") {
-    //         setFullscreen(!fullscreen);
-    //     }
-    // }
-
 
     return (
         <Layout>
@@ -45,7 +33,7 @@ export default function UserPage() {
                         {/* <MainCanvas /> */}
                         {!modelActive ?
                             <div className="w-full h-full rounded-[10px] bg-[url('./assets/images/mainModel.png')] bg-center bg-no-repeat bg-cover cursor-pointer" onClick={() => setModelActive(true)}/> : 
-                            <iframe src={modelActive ? "http://192.168.108.5:5173/threejs" : ""} className={fullscreen ? fullscreenClass : defaultClass} allowFullScreen/>
+                            <iframe src={modelActive ? IframeUrl : ""} className="relative w-full h-full top-0 left-0" allowFullScreen/>
                         }
                     </div>
                     <div className="relative md:w-[482px] h-auto sm:pt-[30px] sm:pb-[20px] p-[20px] flex flex-col rounded-[10px] shadow-[0px_3px_10px_rgba(0,0,0,0.16)]">

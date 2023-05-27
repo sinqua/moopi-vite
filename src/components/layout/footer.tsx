@@ -1,4 +1,4 @@
-import Logo from '../../assets/images/logo.png';
+import Logo from '../../assets/moopi.svg';
 
 function Footer() {
     return (
