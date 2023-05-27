@@ -1,21 +1,15 @@
 import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 
-import { Canvas, PerspectiveCameraProps, extend, useFrame, useLoader, useThree } from '@react-three/fiber'
-import { Stats, OrbitControls, Circle, CameraControls, OrbitControlsProps, useGLTF, useFBX } from '@react-three/drei'
-import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
-import { FBXLoader } from "three/examples/jsm/loaders/FBXLoader.js";
+import { Canvas} from '@react-three/fiber'
+import { Circle, CameraControls, useGLTF } from '@react-three/drei'
+
 import { Color } from "three/src/math/Color.js";
-
-
-import {AnimationMixer, Vector3, Box3, BoxGeometry} from 'three';
 
 import ResetBtn from '../../assets/images/resetBtn.png';
 import HelpBtn from '../../assets/images/helpBtn.png';
 import VRBtn from '../../assets/images/vrBtn.png';
 import FullScreenBtn from '../../assets/images/fullscreenBtn.png';
-
-
 
 const Model = (props: any) => {
     const fileType = props.path.includes("fbx") ? "fbx" : "gtlf";
@@ -23,11 +17,7 @@ const Model = (props: any) => {
     console.log("파일 이름 : " + props.path);
     console.log("파일 타입 : " + fileType);
 
-    const model = useLoader(
-        fileType === "fbx" ?  FBXLoader : GLTFLoader,
-        props.path
-    );
-
+    const model  = useGLTF(props.path) as any;
     const animation = useLoader(
         FBXLoader,
         '../src/assets/models/Walking.fbx'
@@ -107,10 +97,11 @@ const Model = (props: any) => {
     return (
         <>
             <primitive 
-                object={fileType === "fbx" ? model : model.scene} // gltf, vrm
-                // object={model} // fbx
+                // object={fileType === "fbx" ? model : model.scene} // gltf, vrm
+                object={model.scene} // fbx
                 // scale={model.scale}
                 // position={[0, 0, 0]}
+                rotation={[0, 135, 0]}
                 children-0-castShadow
             />
         </>
@@ -119,11 +110,7 @@ const Model = (props: any) => {
 
 
 export default function MainCanvas() {
-    const [fullscreen, setFullscreen] = useState(false);
     const [ modelUrl, setModelUrl ] = useState("");
-
-    const fullscreenClass = "absolute w-full h-full top-0 left-0";
-    const defaultClass = "relative w-full h-full top-0 left-0";
 
     const PresignedUrl = async (bucket: string, key: string) => {
         let result = "";
@@ -183,12 +170,12 @@ export default function MainCanvas() {
     }
 
     useEffect(() => {
-        PresignedUrl("moopi-model-bucket", "model/choyang2_DevilHood.vrm");
+        PresignedUrl("moopi-model-bucket", "choyang2_DevilHood.vrm");
     }, []);
 
     return (
-        <div id="temptemp" className={fullscreen ? fullscreenClass : defaultClass}>
-            <Canvas camera={{ position: [0.5, 1, 2]}} style={{backgroundColor: '#FAF9F6'}} shadows  >
+        <div className="w-full h-full">
+            <Canvas camera={{ position: [0.25, 0.5, 1]}} style={{backgroundColor: '#FAF9F6'}} shadows  >
                 <group position-y={-0.8}>
                     <CameraControls
                         ref={cameraControlsRef}
@@ -214,7 +201,7 @@ export default function MainCanvas() {
                         {/* <meshStandardMaterial color={new Color('#eeeeee')} /> */}
                         <shaderMaterial attach="material" args={[gradientShader]} />
                     </Circle>
-                    <axesHelper />
+                    {/* <axesHelper /> */}
                 </group>
                 {/* <OrbitControls target={[0, 1, 0]} /> */}
             </Canvas>
